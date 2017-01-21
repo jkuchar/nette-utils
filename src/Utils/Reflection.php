@@ -186,7 +186,7 @@ final class Reflection
 		$namespace = $class = $classLevel = $level = NULL;
 		$res = $uses = [];
 
-		while (list(, $token) = each($tokens)) {
+		while ([, $token] = each($tokens)) {
 			switch (is_array($token) ? $token[0] : $token) {
 				case T_NAMESPACE:
 					$namespace = ltrim(self::fetch($tokens, [T_STRING, T_NS_SEPARATOR]) . '\\', '\\');
@@ -257,7 +257,7 @@ final class Reflection
 	{
 		$res = NULL;
 		while ($token = current($tokens)) {
-			list($token, $s) = is_array($token) ? $token : [$token, $token];
+			[$token, $s] = is_array($token) ? $token : [$token, $token];
 			if (in_array($token, (array) $take, TRUE)) {
 				$res .= $s;
 			} elseif (!in_array($token, [T_DOC_COMMENT, T_WHITESPACE, T_COMMENT], TRUE)) {

@@ -272,7 +272,7 @@ class Image
 			return $this->resize($width, $height, self::FILL)->crop('50%', '50%', $width, $height);
 		}
 
-		list($newWidth, $newHeight) = static::calculateSize($this->getWidth(), $this->getHeight(), $width, $height, $flags);
+		[$newWidth, $newHeight] = static::calculateSize($this->getWidth(), $this->getHeight(), $width, $height, $flags);
 
 		if ($newWidth !== $this->getWidth() || $newHeight !== $this->getHeight()) { // resize
 			$newImage = static::fromBlank($newWidth, $newHeight, self::RGB(0, 0, 0, 127))->getImageResource();
@@ -363,7 +363,7 @@ class Image
 	 */
 	public function crop($left, $top, $width, $height)
 	{
-		list($r['x'], $r['y'], $r['width'], $r['height'])
+		[$r['x'], $r['y'], $r['width'], $r['height']]
 			= static::calculateCutout($this->getWidth(), $this->getHeight(), $left, $top, $width, $height);
 		$this->image = imagecrop($this->image, $r);
 		return $this;
