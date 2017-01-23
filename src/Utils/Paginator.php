@@ -76,9 +76,8 @@ class Paginator
 
 	/**
 	 * Returns last page number.
-	 * @return int|NULL
 	 */
-	public function getLastPage()
+	public function getLastPage(): ?int
 	{
 		return $this->itemCount === NULL ? NULL : $this->base + max(0, $this->getPageCount() - 1);
 	}
@@ -134,9 +133,8 @@ class Paginator
 
 	/**
 	 * Returns the total number of pages.
-	 * @return int|NULL
 	 */
-	public function getPageCount()
+	public function getPageCount(): ?int
 	{
 		return $this->itemCount === NULL ? NULL : (int) ceil($this->itemCount / $this->itemsPerPage);
 	}
@@ -175,9 +173,8 @@ class Paginator
 
 	/**
 	 * Returns the total number of items.
-	 * @return int|NULL
 	 */
-	public function getItemCount()
+	public function getItemCount(): ?int
 	{
 		return $this->itemCount;
 	}
@@ -194,9 +191,8 @@ class Paginator
 
 	/**
 	 * Returns the absolute index of the first item on current page in countdown paging.
-	 * @return int|NULL
 	 */
-	public function getCountdownOffset()
+	public function getCountdownOffset(): ?int
 	{
 		return $this->itemCount === NULL
 			? NULL
@@ -206,9 +202,8 @@ class Paginator
 
 	/**
 	 * Returns the number of items on current page.
-	 * @return int|NULL
 	 */
-	public function getLength()
+	public function getLength(): ?int
 	{
 		return $this->itemCount === NULL
 			? $this->itemsPerPage

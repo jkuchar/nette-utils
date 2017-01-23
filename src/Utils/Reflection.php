@@ -31,27 +31,23 @@ final class Reflection
 	}
 
 
-	/**
-	 * @return string|NULL
-	 */
-	public static function getReturnType(\ReflectionFunctionAbstract $func)
+	public static function getReturnType(\ReflectionFunctionAbstract $func): ?string
 	{
 		if ($func->hasReturnType()) {
 			$type = (string) $func->getReturnType();
 			return strtolower($type) === 'self' ? $func->getDeclaringClass()->getName() : $type;
 		}
+		return NULL;
 	}
 
 
-	/**
-	 * @return string|NULL
-	 */
-	public static function getParameterType(\ReflectionParameter $param)
+	public static function getParameterType(\ReflectionParameter $param): ?string
 	{
 		if ($param->hasType()) {
 			$type = (string) $param->getType();
 			return strtolower($type) === 'self' ? $param->getDeclaringClass()->getName() : $type;
 		}
+		return NULL;
 	}
 
 

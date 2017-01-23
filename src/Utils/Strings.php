@@ -355,7 +355,7 @@ class Strings
 	 * Returns part of $haystack before $nth occurence of $needle (negative value means searching from the end).
 	 * @return string|NULL  returns NULL if the needle was not found
 	 */
-	public static function before(string $haystack, string $needle, int $nth = 1)
+	public static function before(string $haystack, string $needle, int $nth = 1): ?string
 	{
 		$pos = self::pos($haystack, $needle, $nth);
 		return $pos === NULL
@@ -368,7 +368,7 @@ class Strings
 	 * Returns part of $haystack after $nth occurence of $needle (negative value means searching from the end).
 	 * @return string|NULL  returns NULL if the needle was not found
 	 */
-	public static function after(string $haystack, string $needle, int $nth = 1)
+	public static function after(string $haystack, string $needle, int $nth = 1): ?string
 	{
 		$pos = self::pos($haystack, $needle, $nth);
 		return $pos === NULL
@@ -381,7 +381,7 @@ class Strings
 	 * Returns position of $nth occurence of $needle in $haystack (negative value means searching from the end).
 	 * @return int|NULL  offset in characters or NULL if the needle was not found
 	 */
-	public static function indexOf(string $haystack, string $needle, int $nth = 1)
+	public static function indexOf(string $haystack, string $needle, int $nth = 1): ?int
 	{
 		$pos = self::pos($haystack, $needle, $nth);
 		return $pos === NULL
@@ -394,7 +394,7 @@ class Strings
 	 * Returns position of $nth occurence of $needle in $haystack.
 	 * @return int|NULL  offset in bytes or NULL if the needle was not found
 	 */
-	private static function pos(string $haystack, string $needle, int $nth = 1)
+	private static function pos(string $haystack, string $needle, int $nth = 1): ?int
 	{
 		if (!$nth) {
 			return NULL;
@@ -431,9 +431,8 @@ class Strings
 
 	/**
 	 * Performs a regular expression match. Accepts flag PREG_OFFSET_CAPTURE (returned in bytes).
-	 * @return array|NULL
 	 */
-	public static function match(string $subject, string $pattern, int $flags = 0, int $offset = 0)
+	public static function match(string $subject, string $pattern, int $flags = 0, int $offset = 0): ?array
 	{
 		if ($offset > strlen($subject)) {
 			return NULL;

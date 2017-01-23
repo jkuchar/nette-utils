@@ -21,10 +21,9 @@ final class FileSystem
 
 	/**
 	 * Creates a directory.
-	 * @return void
 	 * @throws Nette\IOException
 	 */
-	public static function createDir(string $dir, int $mode = 0777)
+	public static function createDir(string $dir, int $mode = 0777): void
 	{
 		if (!is_dir($dir) && !@mkdir($dir, $mode, TRUE) && !is_dir($dir)) { // @ - dir may already exist
 			throw new Nette\IOException("Unable to create directory '$dir'. " . error_get_last()['message']);
@@ -34,10 +33,9 @@ final class FileSystem
 
 	/**
 	 * Copies a file or directory.
-	 * @return void
 	 * @throws Nette\IOException
 	 */
-	public static function copy(string $source, string $dest, bool $overwrite = TRUE)
+	public static function copy(string $source, string $dest, bool $overwrite = TRUE): void
 	{
 		if (stream_is_local($source) && !file_exists($source)) {
 			throw new Nette\IOException("File or directory '$source' not found.");
@@ -69,10 +67,9 @@ final class FileSystem
 
 	/**
 	 * Deletes a file or directory.
-	 * @return void
 	 * @throws Nette\IOException
 	 */
-	public static function delete(string $path)
+	public static function delete(string $path): void
 	{
 		if (is_file($path) || is_link($path)) {
 			$func = DIRECTORY_SEPARATOR === '\\' && is_dir($path) ? 'rmdir' : 'unlink';
@@ -93,11 +90,10 @@ final class FileSystem
 
 	/**
 	 * Renames a file or directory.
-	 * @return void
 	 * @throws Nette\IOException
 	 * @throws Nette\InvalidStateException if the target file or directory already exist
 	 */
-	public static function rename(string $name, string $newName, bool $overwrite = TRUE)
+	public static function rename(string $name, string $newName, bool $overwrite = TRUE): void
 	{
 		if (!$overwrite && file_exists($newName)) {
 			throw new Nette\InvalidStateException("File or directory '$newName' already exists.");
@@ -131,10 +127,9 @@ final class FileSystem
 
 	/**
 	 * Writes a string to a file.
-	 * @return void
 	 * @throws Nette\IOException
 	 */
-	public static function write(string $file, string $content, int $mode = 0666)
+	public static function write(string $file, string $content, int $mode = 0666): void
 	{
 		static::createDir(dirname($file));
 		if (@file_put_contents($file, $content) === FALSE) { // @ is escalated to exception
